@@ -34,8 +34,18 @@
         <div class="content">
           <div class="title success font-29">SUCCESSFUL</div>
           <div class="font-22">
-            Reward successfully claimed! Check your NFT on
-            <span @click="system.$commonFun.goLink(hash)">OpenSea</span>
+            Reward successfully claimed! View your
+            <span @click="system.$commonFun.goLink(hash)">transaction</span>
+            , Check your NFT on
+            <span
+              @click="
+                system.$commonFun.goLink(
+                  'https://opensea.io/collection/lagrange-nft',
+                )
+              "
+            >
+              OpenSea
+            </span>
           </div>
         </div>
       </div>
