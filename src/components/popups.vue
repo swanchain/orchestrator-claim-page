@@ -15,18 +15,26 @@
       </div>
 
       <div class="connect-result flex-row" v-else-if="active === 'failed'">
-        <div class="image"><img :src="promptFailed" alt="" class="image" /></div>
+        <div class="image">
+          <img :src="promptFailed" alt="" class="image" />
+        </div>
         <div class="content">
           <div class="title failed font-29">FAILED</div>
-          <div class="font-22">You are not eligible for rewards currently. Please stay tuned for upcoming activities.</div>
+          <div class="font-22">
+            You are not eligible for rewards currently. Please stay tuned for
+            upcoming activities.
+          </div>
         </div>
       </div>
 
       <div class="connect-result flex-row" v-else-if="active === 'success'">
-        <div class="image"><img :src="promptSuccess" alt="" class="image" /></div>
+        <div class="image">
+          <img :src="promptSuccess" alt="" class="image" />
+        </div>
         <div class="content">
           <div class="title success font-29">SUCCESSFUL</div>
-          <div class="font-22">Reward successfully claimed! Check your NFT on
+          <div class="font-22">
+            Reward successfully claimed! Check your NFT on
             <span @click="system.$commonFun.goLink(hash)">OpenSea</span>
           </div>
         </div>
@@ -47,54 +55,56 @@ import {
   reactive,
   getCurrentInstance,
   toRefs,
-  nextTick
+  nextTick,
 } from 'vue'
-import { useStore } from "vuex"
+import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
-import {
-  CircleClose
-} from '@element-plus/icons-vue'
-import { ElIcon } from "element-plus"
+import { CircleClose } from '@element-plus/icons-vue'
+import { ElIcon } from 'element-plus'
 import { showLoading, hideLoading } from '@/plugins/loading'
 import spookyABI from '@/utils/abi/SpookyProxy.json'
 export default defineComponent({
   name: 'Popup',
   components: {
-    CircleClose, ElIcon
+    CircleClose,
+    ElIcon,
   },
   props: {
-    claimShow: { type: Boolean, default: false }
+    claimShow: { type: Boolean, default: false },
   },
-  setup (props, context) {
+  setup(props, context) {
     const store = useStore()
     const bodyWidth = ref(document.body.clientWidth <= 768 ? 30 : 50)
     const system = getCurrentInstance().appContext.config.globalProperties
     const route = useRoute()
     const router = useRouter()
-    const metaLogo = require("@/assets/images/metamask.png")
-    const promptSuccess = require("@/assets/images/prompt-success.png")
-    const promptFailed = require("@/assets/images/prompt-failed.png")
+    const metaLogo = require('@/assets/images/metamask.png')
+    const promptSuccess = require('@/assets/images/prompt-success.png')
+    const promptFailed = require('@/assets/images/prompt-failed.png')
     const active = ref('connect')
     const spookyLoad = ref(false)
     const hash = ref('')
     const tokenID = Number(process.env.VUE_APP_TOKENID)
     const spookyAddress = process.env.VUE_APP_CONTACT_ADDRESS
-    const spookyContract = new system.$commonFun.web3Init.eth.Contract(spookyABI, spookyAddress)
+    const spookyContract = new system.$commonFun.web3Init.eth.Contract(
+      spookyABI,
+      spookyAddress,
+    )
 
-    function closeHandle () {
+    function closeHandle() {
       context.emit('hardClose', false)
     }
 
     let lastTime = 0
-    async function throttle () {
+    async function throttle() {
       // Prevent multiple signatures
-      let now = new Date().valueOf();
-      if (lastTime > 0 && (now - lastTime) <= 2000) return false
+      let now = new Date().valueOf()
+      if (lastTime > 0 && now - lastTime <= 2000) return false
       lastTime = now
       return true
     }
 
-    async function isLogin () {
+    async function isLogin() {
       const time = await throttle()
       if (!time) return false
       system.$commonFun.Init(async (addr, chain) => {
@@ -102,15 +112,15 @@ export default defineComponent({
       })
     }
 
-    async function spookyMethod () {
+    async function spookyMethod() {
       showLoading()
       try {
         let gasLimit = await spookyContract.methods
-          .claim(tokenID)
+          .claim()
           .estimateGas({ from: store.state.metaAddress })
 
         const tx = await spookyContract.methods
-          .claim(tokenID)
+          .claim()
           .send({ from: store.state.metaAddress, gasLimit: gasLimit })
           .on('transactionHash', async (transactionHash) => {
             console.log('transactionHash:', transactionHash)
@@ -121,12 +131,13 @@ export default defineComponent({
           .on('error', () => hideLoading())
       } catch (err) {
         console.log('err', err)
-        if (err && err.message) system.$commonFun.messageTip('error', err.message)
+        if (err && err.message)
+          system.$commonFun.messageTip('error', err.message)
         active.value = 'failed'
         hideLoading()
       }
     }
-    onMounted(() => { })
+    onMounted(() => {})
     return {
       system,
       bodyWidth,
@@ -137,9 +148,10 @@ export default defineComponent({
       spookyLoad,
       promptSuccess,
       promptFailed,
-      closeHandle, isLogin
+      closeHandle,
+      isLogin,
     }
-  }
+  },
 })
 </script>
 
