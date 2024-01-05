@@ -1,225 +1,325 @@
-[{
+[
+  {
     "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
-}, {
+  },
+  {
     "anonymous": false,
-    "inputs": [{
+    "inputs": [
+      {
         "indexed": false,
         "internalType": "uint8",
         "name": "version",
         "type": "uint8"
-    }],
+      }
+    ],
     "name": "Initialized",
     "type": "event"
-}, {
+  },
+  {
     "anonymous": false,
-    "inputs": [{
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "user",
         "type": "address"
-    }, {
+      },
+      {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-    }],
+        "internalType": "uint256[]",
+        "name": "tokenIds",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "quantities",
+        "type": "uint256[]"
+      }
+    ],
     "name": "NFTClaimed",
     "type": "event"
-}, {
+  },
+  {
     "anonymous": false,
-    "inputs": [{
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "previousOwner",
         "type": "address"
-    }, {
+      },
+      {
         "indexed": true,
         "internalType": "address",
         "name": "newOwner",
         "type": "address"
-    }],
+      }
+    ],
     "name": "OwnershipTransferred",
     "type": "event"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-    }],
+  },
+  {
+    "inputs": [],
     "name": "claim",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }, {
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-    }],
+      }
+    ],
     "name": "claimable",
-    "outputs": [{
-        "internalType": "bool",
+    "outputs": [
+      {
+        "internalType": "uint256",
         "name": "",
-        "type": "bool"
-    }],
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [],
+    "name": "collection",
+    "outputs": [
+      {
+        "internalType": "contract IERC1155",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "collectionAddress",
         "type": "address"
-    }],
+      }
+    ],
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }],
+      }
+    ],
     "name": "isAdmin",
-    "outputs": [{
+    "outputs": [
+      {
         "internalType": "bool",
         "name": "",
         "type": "bool"
-    }],
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }, {
+      },
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }, {
+      },
+      {
         "internalType": "uint256[]",
         "name": "",
         "type": "uint256[]"
-    }, {
+      },
+      {
         "internalType": "uint256[]",
         "name": "",
         "type": "uint256[]"
-    }, {
+      },
+      {
         "internalType": "bytes",
         "name": "",
         "type": "bytes"
-    }],
+      }
+    ],
     "name": "onERC1155BatchReceived",
-    "outputs": [{
+    "outputs": [
+      {
         "internalType": "bytes4",
         "name": "",
         "type": "bytes4"
-    }],
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }, {
+      },
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }, {
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-    }, {
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-    }, {
+      },
+      {
         "internalType": "bytes",
         "name": "",
         "type": "bytes"
-    }],
+      }
+    ],
     "name": "onERC1155Received",
-    "outputs": [{
+    "outputs": [
+      {
         "internalType": "bytes4",
         "name": "",
         "type": "bytes4"
-    }],
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
+  },
+  {
     "inputs": [],
     "name": "owner",
-    "outputs": [{
+    "outputs": [
+      {
         "internalType": "address",
         "name": "",
         "type": "address"
-    }],
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
-}, {
+  },
+  {
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "admin",
         "type": "address"
-    }, {
+      },
+      {
         "internalType": "bool",
         "name": "status",
         "type": "bool"
-    }],
+      }
+    ],
     "name": "setAdmin",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "claimer",
         "type": "address"
-    }, {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-    }],
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "quantity",
+        "type": "uint256[]"
+      }
+    ],
     "name": "setClaim",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
         "internalType": "bytes4",
         "name": "interfaceId",
         "type": "bytes4"
-    }],
+      }
+    ],
     "name": "supportsInterface",
-    "outputs": [{
+    "outputs": [
+      {
         "internalType": "bool",
         "name": "",
         "type": "bool"
-    }],
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
-}, {
-    "inputs": [{
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenIds",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "newOwner",
         "type": "address"
-    }],
+      }
+    ],
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}]
+  }
+]
